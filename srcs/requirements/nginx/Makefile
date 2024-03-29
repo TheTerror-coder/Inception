@@ -6,20 +6,20 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/03/21 16:18:57 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/03/29 00:22:09 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-IMAGE = nginx
-CONTAINER = nginx_container
-PORTS = -p 8080:80
+IMAGE = nginx_i
+CONTAINER = nginx_c
+PORTS = -p 8080:443
 
 all : build run
 
 build :
 	sudo docker build . -t  $(IMAGE)
 run :
-	sudo docker run -it -d --rm --name $(CONTAINER) $(PORTS) $(IMAGE)
+	sudo docker run -itd --rm --name $(CONTAINER) $(PORTS) $(IMAGE)
 exec :
 	sudo docker exec -it  $(CONTAINER) bash
 clean :
@@ -33,3 +33,5 @@ ps :
 ls :
 	sudo docker image ls
 	sudo docker container ls
+
+re : fclean all
