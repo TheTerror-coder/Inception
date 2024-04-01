@@ -1,48 +1,50 @@
-name: inception
+name: ${__PROJECT_NAME}
 
 services:
   mariadb:
-    image: mariadb_i
-    container_name: mariadb_c
+    image: ${__MARIADB_IMAGE}
+    container_name: ${__MARIADB_CONTAINER}
     pull_policy: never
-    build: ./requirements/mariadb/.
+    build: ${__MARIADB_CONTEXT}
     expose:
-      - 3306
+      - ${__MARIADB_PORT}
     env_file: ./.env
+    volumes:
+      - mariadb:${__DATABASE_DIR}
     networks:
-      - inception
+      - ${__NETWORK_NAME}
     # restart: on-failure
 
   wordpress:
-    image: wordpress_i
-    container_name: wordpress_c
+    image: ${__WORDPRESS_IMAGE}
+    container_name: ${__WORDPRESS_CONTAINER}
     depends_on:
       - mariadb
     pull_policy: never
-    build: ./requirements/wordpress/.
+    build: ${__WORDPRESS_CONTEXT}
     expose:
-      - 9000
+      - ${__WORDPRESS_PORT}
     env_file: ./.env
     volumes:
-      - wordpress:/var/www/
+      - wordpress:${__WORDPRESS_DIR}
     networks:
-      - inception
+      - ${__NETWORK_NAME}
     # restart: on-failure
   
   nginx:
-    image: nginx_i
-    container_name: nginx_c
+    image: ${__NGINX_IMAGE}
+    container_name: ${__NGINX_CONTAINER}
     depends_on:
       - wordpress
     pull_policy: never
-    build: ./requirements/nginx/.
+    build: ${__NGINX_CONTEXT}
     env_file: ./.env
     volumes:
-      - wordpress:/var/www/
+      - wordpress:${__WORDPRESS_DIR}
     networks:
-      - inception
+      - ${__NETWORK_NAME}
     ports:
-      - 8080:443
+      - ${__HOST_PORT}:${__NGINX_PORT}
     # restart: on-failure
 
 volumes:
@@ -51,13 +53,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ./volumes/wordpress/
+      device: ${__WORDPRESS_FL_VOLUME}
   mariadb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ./volumes/mariadb/
+      device: ${__WORDPRESS_DB_VOLUME}
 
 networks:
   inception:

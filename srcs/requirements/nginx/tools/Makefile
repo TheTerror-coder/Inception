@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/03/29 00:22:09 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/04/01 19:31:44 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PORTS = -p 8080:443
 all : build run
 
 build :
-	sudo docker build . -t  $(IMAGE)
+	sudo docker build ../ -t  $(IMAGE)
 run :
 	sudo docker run -itd --rm --name $(CONTAINER) $(PORTS) $(IMAGE)
 exec :

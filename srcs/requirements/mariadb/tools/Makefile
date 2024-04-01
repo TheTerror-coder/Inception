@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/03/27 17:55:31 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/04/01 19:21:23 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ ENV = #--env-file ".env"
 all : build run
 
 build :
-	sudo docker build . -t  $(IMAGE)
+	sudo docker build ../ -t  $(IMAGE)
 run :
 	sudo docker run $(ENV) -it --rm --name $(CONTAINER) $(PORTS) $(IMAGE) 
 exec :
