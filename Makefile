@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/03/29 16:37:04 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/04/01 17:34:33 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ kill k : # Force stop service containers.
 	-sudo docker-compose -f $(COMPOSE_FILE) kill --remove-orphans
 
 
-clean c : down rm rmi
+clean c : down rm rmi rmv
 fclean fc : clean
 	-yes | sudo docker system prune
-re : down all
+re : clean all

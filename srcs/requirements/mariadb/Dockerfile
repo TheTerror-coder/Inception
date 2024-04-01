@@ -1,8 +1,8 @@
 ### HOST COUCHE ###
-FROM debian:bullseye
+FROM debian:11
 
 ### APT UPDATE && INSTALL mariadb-server ###
-RUN apt update && apt upgrade -y
+RUN apt update -y && apt upgrade -y
 
 RUN	apt install mariadb-server -y
 

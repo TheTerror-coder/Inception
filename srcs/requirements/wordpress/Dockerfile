@@ -1,8 +1,8 @@
 ###HOST COUCHE###
-FROM debian:bullseye
+FROM debian:11
 
 ###APT UPDATE###
-RUN apt update && apt upgrade
+RUN apt update -y && apt upgrade -y
 
 RUN mkdir -p /var/www/
 
@@ -18,7 +18,7 @@ RUN rm -rf /var/www/wp_package.tar.gz
 RUN mkdir /var/www/jfaye/
 
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-# COPY ./conf/wp-config.php /var/www/wordpress/wp-config.php
+COPY ./conf/wp-config.php /var/www/wordpress/wp-config.php
 # RUN rm -rf /var/www/wordpress/wp-config-sample.php
 COPY ./conf/script.sh /.
 

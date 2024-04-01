@@ -1,8 +1,8 @@
 ###HOST COUCHE###
-FROM debian:bullseye
+FROM debian:11
 
 ###APT UPDATE###
-RUN apt update
+RUN apt update -y
 
 
 RUN mkdir -p /var/www/

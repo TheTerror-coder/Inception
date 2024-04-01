@@ -11,8 +11,7 @@ services:
     env_file: ./.env
     networks:
       - inception
-    # ports: 8080:443
-    restart: on-failure
+    # restart: on-failure
 
   wordpress:
     image: wordpress_i
@@ -28,7 +27,7 @@ services:
       - wordpress:/var/www/
     networks:
       - inception
-    restart: on-failure
+    # restart: on-failure
   
   nginx:
     image: nginx_i
@@ -44,7 +43,7 @@ services:
       - inception
     ports:
       - 8080:443
-    restart: on-failure
+    # restart: on-failure
 
 volumes:
   wordpress:
