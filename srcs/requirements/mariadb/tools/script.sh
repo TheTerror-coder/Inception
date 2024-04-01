@@ -16,6 +16,4 @@ mysql -u root -p$SQL_ROOT_PASSWD -e "FLUSH PRIVILEGES;"
 
 mysqladmin -u root -p$SQL_ROOT_PASSWD shutdown
 
-# kill $(cat /run/mysqld/mysqld.pid)
-
 mysqld

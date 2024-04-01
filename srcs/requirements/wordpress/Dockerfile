@@ -4,26 +4,21 @@ FROM debian:11
 ###APT UPDATE###
 RUN apt update -y && apt upgrade -y
 
-RUN mkdir -p /var/www/
+RUN apt install php-fpm \
+	php-mysql \
+	curl -y
 
-RUN apt install php-fpm php-mysql -y && \
-	apt install curl -y
+RUN mkdir -p /var/www/ && \
+	curl -o /var/www/wp_package.tar.gz https://wordpress.org/latest.tar.gz && \
+	cd /var/www/ && tar -xzf /var/www/wp_package.tar.gz && cd / && \
+	rm -rf /var/www/wp_package.tar.gz
 
-RUN curl -o /var/www/wp_package.tar.gz https://wordpress.org/latest.tar.gz
+COPY ./conf/www.conf			/etc/php/7.4/fpm/pool.d/www.conf
+COPY ./conf/wp-config.php		/var/www/wordpress/wp-config.php
+COPY ./tools/script.sh			/etc/init.d/init_script
 
-RUN cd /var/www/ && tar -xzf /var/www/wp_package.tar.gz && cd /
-
-RUN rm -rf /var/www/wp_package.tar.gz
-
-RUN mkdir /var/www/jfaye/
-
-COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-COPY ./conf/wp-config.php /var/www/wordpress/wp-config.php
-# RUN rm -rf /var/www/wordpress/wp-config-sample.php
-COPY ./conf/script.sh /.
-
-RUN chmod 500 /script.sh
+RUN chmod 500 /etc/init.d/init_script
 
 EXPOSE 9000
 
-CMD [ "/script.sh" ]
+CMD [ "/etc/init.d/init_script" ]

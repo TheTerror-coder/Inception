@@ -2,26 +2,14 @@
 FROM debian:11
 
 ### APT UPDATE && INSTALL mariadb-server ###
-RUN apt update -y && apt upgrade -y
+RUN apt update -y && apt upgrade -y && \
+	apt install mariadb-server -y
 
-RUN	apt install mariadb-server -y
+COPY ./conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./tools/script.sh		/etc/init.d/init_script
 
-# RUN mkdir -p /var/lib/mysql
-# RUN mkdir -p /var/run/mysqld
-
-# RUN chown -R mysql:mysql /etc/mysql/
-# RUN chown -R mysql:mysql /var/lib/mysql/
-# RUN chown -R mysql:mysql /var/run/mysqld/
-# RUN chown -R mysql:mysql /etc/init.d/mariadb
-# RUN chown -R mysql:mysql /run/mysqld/
-# RUN chown -R mysql:mysql /usr/bin/mysql_secure_installation
-
-COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-
-COPY ./conf/script.sh /script.sh
-
-RUN chmod 500 /script.sh
+RUN chmod 500 /etc/init.d/init_script
 
 EXPOSE 3306
 
-CMD ["/script.sh"]
+CMD ["/etc/init.d/init_script"]
