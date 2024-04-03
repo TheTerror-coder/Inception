@@ -9,6 +9,9 @@ RUN apt install php-fpm \
 	curl -y
 
 RUN mkdir -p /var/www/ && \
+	curl --output-dir /var/www -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x /var/www/wp-cli.phar && \
+	mv /var/www/wp-cli.phar /usr/local/bin/wp && \
 	curl -o /var/www/wp_package.tar.gz https://wordpress.org/latest.tar.gz && \
 	cd /var/www/ && tar -xzf /var/www/wp_package.tar.gz && cd / && \
 	rm -rf /var/www/wp_package.tar.gz

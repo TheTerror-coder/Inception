@@ -5,6 +5,11 @@ services:
     image: ${__MARIADB_IMAGE}
     container_name: ${__MARIADB_CONTAINER}
     pull_policy: never
+    healthcheck: &health_authority
+      test: ["CMD-SHELL", "test -f $__HEALTH || exit 1"]
+      interval: 1s
+      timeout: 10s
+      retries: 3
     build: ${__MARIADB_CONTEXT}
     expose:
       - ${__MARIADB_PORT}
@@ -19,8 +24,11 @@ services:
     image: ${__WORDPRESS_IMAGE}
     container_name: ${__WORDPRESS_CONTAINER}
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
+        restart: true
     pull_policy: never
+    healthcheck: *health_authority
     build: ${__WORDPRESS_CONTEXT}
     expose:
       - ${__WORDPRESS_PORT}
@@ -35,7 +43,9 @@ services:
     image: ${__NGINX_IMAGE}
     container_name: ${__NGINX_CONTAINER}
     depends_on:
-      - wordpress
+      wordpress:
+        condition: service_healthy
+        restart: true
     pull_policy: never
     build: ${__NGINX_CONTEXT}
     env_file: ./.env

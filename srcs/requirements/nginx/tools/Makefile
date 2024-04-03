@@ -6,12 +6,12 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/04/01 19:31:44 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/04/02 15:59:42 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 IMAGE = nginx_i
-CONTAINER = nginx_c
+CONTAINER = nginx
 PORTS = -p 8080:443
 
 all : build run

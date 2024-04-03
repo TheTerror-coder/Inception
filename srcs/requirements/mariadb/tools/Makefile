@@ -6,12 +6,12 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/04/01 19:21:23 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/04/02 15:59:27 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 IMAGE = mariadb_i
-CONTAINER = mariadb_c
+CONTAINER = mariadb
 PORTS = #-p 8080:443
 ENV = #--env-file ".env"
 
