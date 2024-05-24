@@ -10,7 +10,7 @@ COPY ./tools/script.sh		/etc/init.d/init_script
 
 RUN chmod 500 /etc/init.d/init_script
 
-RUN /etc/init.d/mariadb start
+# RUN /etc/init.d/mariadb start
 
 EXPOSE 3306
 
