@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: jm <jm@student.42lyon.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/04/01 19:02:12 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/05/25 16:05:55 by jm               ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ COMPOSE_FILE= ./srcs/docker-compose.yml
 all : make_dirs build up
 
 make_dirs :
-	mkdir -p ./srcs/volumes/wordpress/ ./srcs/volumes/mariadb/
+	sudo mkdir -p /home/jfaye/data/wordpress/ /home/jfaye/data/mariadb/
 
 build b : # Build or rebuild services
 	-sudo docker compose -f $(COMPOSE_FILE) build
@@ -54,8 +54,9 @@ rm remove : # Removes stopped service containers
 rmi : # Removes images
 	-sudo docker rmi $$(sudo docker images | awk 'NR>1 {print $3}' | tr '\n' ' ')
 rmv : # clean volumes
-	-sudo rm -rf srcs/volumes/wordpress/*
-	-sudo rm -rf srcs/volumes/mariadb/*
+	-sudo docker volume rm $$(sudo docker volume ls | awk 'NR>1 {print $2}' | tr '\n' ' ')
+	-sudo rm -rf /home/jfaye/data/wordpress
+	-sudo rm -rf /home/jfaye/data/mariadb
 kill k : # Force stop service containers.
 	-sudo docker-compose -f $(COMPOSE_FILE) kill --remove-orphans
 

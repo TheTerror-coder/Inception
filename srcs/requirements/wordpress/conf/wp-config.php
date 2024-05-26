@@ -26,7 +26,7 @@ define( 'DB_NAME', getenv("__WP_DB_NAME") );
 define( 'DB_USER', getenv("__SQL_ADMIN_NAME") );
 
 /** Database password */
-define( 'DB_PASSWORD', getenv("__SQL_ADMIN_PASSWD") );
+define( 'DB_PASSWORD', file_get_contents(getenv("__DB_PASSWORD_FILE")) );
 
 /** Database hostname */
 define( 'DB_HOST', getenv("__DB_HOSTNAME").":".getenv("__DB_HOST_PORT") );
@@ -48,14 +48,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         getenv("__AUTH_KEY") );
-define( 'SECURE_AUTH_KEY',  getenv("__SECURE_AUTH_KEY") );
-define( 'LOGGED_IN_KEY',    getenv("__LOGGED_IN_KEY") );
-define( 'NONCE_KEY',        getenv("__NONCE_KEY") );
-define( 'AUTH_SALT',        getenv("__AUTH_SALT") );
-define( 'SECURE_AUTH_SALT', getenv("__SECURE_AUTH_SALT") );
-define( 'LOGGED_IN_SALT',   getenv("__LOGGED_IN_SALT") );
-define( 'NONCE_SALT',       getenv("__NONCE_SALT") );
+define( 'AUTH_KEY',         file(getenv("__AUTH_KEY"))[0] );
+define( 'SECURE_AUTH_KEY',  file(getenv("__SECURE_AUTH_KEY"))[1] );
+define( 'LOGGED_IN_KEY',    file(getenv("__LOGGED_IN_KEY"))[2] );
+define( 'NONCE_KEY',        file(getenv("__NONCE_KEY"))[3] );
+define( 'AUTH_SALT',        file(getenv("__AUTH_SALT"))[4] );
+define( 'SECURE_AUTH_SALT', file(getenv("__SECURE_AUTH_SALT"))[5] );
+define( 'LOGGED_IN_SALT',   file(getenv("__LOGGED_IN_SALT"))[6] );
+define( 'NONCE_SALT',       file(getenv("__NONCE_SALT"))[7] );
 
 /**#@-*/
 

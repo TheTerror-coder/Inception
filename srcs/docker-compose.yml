@@ -18,7 +18,10 @@ services:
       - mariadb:${__DATABASE_DIR}
     networks:
       - ${__NETWORK_NAME}
-    # restart: on-failure
+    secrets:
+      - db_password
+      - db_root_password
+    restart: on-failure
 
   wordpress:
     image: ${__WORDPRESS_IMAGE}
@@ -37,7 +40,12 @@ services:
       - wordpress:${__WORDPRESS_DIR}
     networks:
       - ${__NETWORK_NAME}
-    # restart: on-failure
+    secrets:
+      - wp_admin_password
+      - wp_user2_password
+      - wp_credentials
+      - db_password
+    restart: on-failure
   
   nginx:
     image: ${__NGINX_IMAGE}
@@ -55,7 +63,7 @@ services:
       - ${__NETWORK_NAME}
     ports:
       - ${__HOST_PORT}:${__NGINX_PORT}
-    # restart: on-failure
+    restart: on-failure
 
 volumes:
   wordpress:
@@ -74,3 +82,15 @@ volumes:
 networks:
   inception:
     driver: bridge
+
+secrets:
+  wp_credentials:
+    file: ../secrets/wp_credentials.txt
+  db_password:
+    file: ../secrets/db_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+  wp_admin_password:
+    file: ../secrets/wp_admin_password.txt
+  wp_user2_password:
+    file: ../secrets/wp_user2_password.txt

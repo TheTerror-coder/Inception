@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: jm <jm@student.42lyon.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/20 15:35:44 by TheTerror         #+#    #+#              #
-#    Updated: 2024/04/02 15:59:10 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/05/26 14:00:25 by jm               ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-IMAGE = wordpress_i
-CONTAINER = wordpress
+IMAGE = wordpress
+CONTAINER = wordpress_c
 PORTS = #-p 8080:443
 
 all : build run
