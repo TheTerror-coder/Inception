@@ -53,5 +53,3 @@ Expertise dans les domaines suivants :
     Développement avec Docker : Création et gestion de Dockerfiles, utilisation de Docker Compose pour l’orchestration des services.
     Sécurité et bonnes pratiques : Configuration de TLS, gestion des variables d’environnement et sécurisation des données sensibles.
 
-Technologies utilisées : Docker, Docker Compose, NGINX, WordPress, MariaDB, Makefile, Virtualisation, SSL/TLS, Script Shell, Variables d'environnement
-
