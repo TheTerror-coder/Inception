@@ -1,6 +1,7 @@
 # Inception - Projet d'Administration Système
 
 Description : Développement d'une infrastructure complète utilisant Docker pour déployer un site WordPress avec une architecture multi-conteneurs. Ce projet implique la création de plusieurs services dans des containers Docker, dont NGINX, WordPress + PHP-FPM, et MariaDB, ainsi que l'utilisation de volumes pour la persistance des données. Le projet inclut également des configurations de sécurité comme l'usage de TLSv1.2 ou TLSv1.3 pour le serveur NGINX, la gestion des variables d'environnement via .env et Docker secrets, et une configuration réseau entre les containers via Docker Compose.
+Une attention particulière a été portée sur la sécurité, l'automatisation et les bonnes pratiques de gestion des conteneurs.
 
 Compétences et technologies utilisées :
 
